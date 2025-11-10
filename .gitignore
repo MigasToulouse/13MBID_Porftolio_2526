@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 
 mlruns
+
+# local storage for dvc
+.datastorage/
