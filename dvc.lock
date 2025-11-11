@@ -1,0 +1,35 @@
+schema: '2.0'
+stages:
+  visualize_data:
+    cmd: python src\data_visualization_and_EDA.py
+    deps:
+    - path: data\raw\bank-additional-full.csv
+      hash: md5
+      md5: f6cb2c1256ffe2836b36df321f46e92c
+      size: 5834924
+    outs:
+    - path: docs\figures\
+      hash: md5
+      md5: 21c730ad324f7287ddd9b55944c80d87.dir
+      size: 176234
+      nfiles: 6
+    - path: docs\reports\EDA_reporte.html
+      hash: md5
+      md5: f65af2aa734f04ab00565b319205566a
+      size: 7128676
+  test_data_quality:
+    cmd: pytest --html=docs\test_results\test_results.html --self-contained-html test\test_dataquality.py
+    deps:
+    - path: data\raw\bank-additional-full.csv
+      hash: md5
+      md5: f6cb2c1256ffe2836b36df321f46e92c
+      size: 5834924
+    - path: test\test_dataquality.py
+      hash: md5
+      md5: 75f504d96d3c3a09d4c00eaf7c3cb94d
+      size: 2277
+    outs:
+    - path: docs\test_results\test_results.html
+      hash: md5
+      md5: 769f16bec1633bb001f9ff16d616de34
+      size: 33670

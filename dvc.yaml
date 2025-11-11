@@ -1,0 +1,17 @@
+stages:
+  # 1er stage: exploración de datos. Gráficos y reporte EDA
+  visualize_data:
+    cmd: python src\data_visualization_and_EDA.py
+    deps:
+      - data\raw\bank-additional-full.csv
+    outs:
+      - docs\figures\
+      - docs\reports\EDA_reporte.html
+  # 2do stage: test de calidad de datos
+  test_data_quality:
+    cmd: pytest --html=docs\test_results\test_results.html --self-contained-html test\test_dataquality.py
+    deps:
+      - test\test_dataquality.py
+      - data\raw\bank-additional-full.csv
+    outs:
+      - docs\test_results\test_results.html
