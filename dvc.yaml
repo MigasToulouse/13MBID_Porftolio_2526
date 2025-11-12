@@ -23,3 +23,12 @@ stages:
       - data\raw\bank-additional-full.csv
     outs:
       - docs\test_results\test_gx_results.html
+  # 4to stage: preprocesamiento de datos
+  preprocess_data:
+    cmd: python src\data_preprocessing.py
+    deps:
+      - src\data_preprocessing.py
+      - data\raw\bank-additional-full.csv
+    outs:
+      - data\processed\bank-additional-full_preprocessed.csv
+      - docs\transformaciones_dataset.md
