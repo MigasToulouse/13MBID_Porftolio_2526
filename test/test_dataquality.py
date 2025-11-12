@@ -76,13 +76,8 @@ def test_rango_numerico_negativo(datos_banco: pd.DataFrame):
 def test_sin_duplicados(datos_banco: pd.DataFrame):
     """
     Test para verificar que el DataFrame no contiene filas duplicadas.
-    NOTA: Este test fallará con los datos actuales (hay 12 duplicados).
     """
     df = datos_banco
     # Descomenta la siguiente línea para activar el test.
     assert df.duplicated().sum() == 0, \
        f"El DataFrame contiene {df.duplicated().sum()} filas duplicadas."
-    
-    # pass # Dejamos 'pass' para que el test no falle mientras está "desactivado"
-
-

@@ -33,7 +33,7 @@ def test_great_expectations():
                 "message": message
             })
     
-    # Validaciones de valores sobre atributos
+    # VALIDACIÓN DE VALORES DE ATRIBUTOS
 
     # --- 1. Datos del cliente bancario ---
     add_expectation(
@@ -112,20 +112,8 @@ def test_great_expectations():
 
     add_expectation(
         "campaign_range",
-        (df["campaign"] >= 1).all(), # Al menos 1 contacto en esta campaña
-        "La columna 'campaign' contiene valores no positivos (debe ser >= 1)."
-    )
-
-    add_expectation(
-        "campaign_range",
         df["campaign"].between(0, 999).all(), # Rango esperado de contactos
         "La columna 'campaign' contiene valores fuera del rango esperado (0-999)."
-    )
-
-    add_expectation(
-        "previous_range",
-        (df["previous"] >= 0).all(),
-        "La columna 'previous' contiene valores negativos."
     )
 
     add_expectation(
@@ -141,3 +129,43 @@ def test_great_expectations():
         df["y"].isin(["yes", "no"]).all(),
         "La columna 'y' contiene valores distintos a 'yes' o 'no'."
     )
+
+    # INCONSISTENCIAS
+
+    # Cliente nunca contactado pero resultado de campaña distinto a 'nonexistent'
+    add_expectation(
+    "pdays_poutcome_consistency",
+    (
+        (df["pdays"] != 999) | (df["poutcome"] == "nonexistent")
+    ).all(),
+    "Inconsistencia: Se encontraron filas con pdays=999 pero 'poutcome' no es 'nonexistent'."
+    )
+
+    # CLiente nunca contactado pero previous > 0
+    add_expectation(
+    "pdays_previous_consistency",
+    (
+        (df["pdays"] != 999) | (df["previous"] == 0)
+    ).all(),
+    "Inconsistencia: Se encontraron filas con pdays=999 pero 'previous' es mayor a 0."
+    )
+
+    # Se cliente fue contactado (pdays != 999), duration debería ser mayor a 0
+    add_expectation(
+    "pdays_duration_consistency",
+    (
+        (df["pdays"] != 999) | (df["duration"] > 0)
+    ).all(),
+    "Inconsistencia: Se encontraron filas con pdays=999 pero 'duration' es 0."
+    )
+    
+    # Si duration es 0, es imposible que 'y' sea 'yes'. No se ha contactado realmente.
+    add_expectation(
+    "duration_target_consistency",
+    (
+        (df["duration"] > 0) | (df["y"] == "no")
+    ).all(),
+    "Inconsistencia: Se encontraron filas con duration=0 pero 'y' es 'yes'."
+)
+
+

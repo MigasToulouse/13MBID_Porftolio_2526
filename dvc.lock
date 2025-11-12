@@ -26,13 +26,13 @@ stages:
       size: 5834924
     - path: test\test_dataquality.py
       hash: md5
-      md5: 902dd1dc3aca19b838476b517f908db2
-      size: 3340
+      md5: ebe5a6190ff9eadc4a7c6dd311ceeb03
+      size: 3177
     outs:
     - path: docs\test_results\test_results.html
       hash: md5
-      md5: 97c0d05a12be2785e48098a657e64dd3
-      size: 38018
+      md5: 983242499ffcb3021a84ab7fad872c45
+      size: 37936
   test_data_gx:
     cmd: pytest --html=docs\test_results\test_gx_results.html --self-contained-html
       test\test_data_gx.py
@@ -43,10 +43,10 @@ stages:
       size: 5834924
     - path: test\test_data_gx.py
       hash: md5
-      md5: 670f588b112396673ec6df4e048896a2
-      size: 4369
+      md5: 182f128c61db74d82268b4a616e67814
+      size: 5255
     outs:
     - path: docs\test_results\test_gx_results.html
       hash: md5
-      md5: f81ddec32a26e4407c6e0c761ad3805f
+      md5: ad269eb1894676bcf1edcfc3c712b97f
       size: 33105
