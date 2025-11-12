@@ -118,6 +118,7 @@ LISTA_EXPECTATIVAS = [
     )
 ]
 
+# Comentar xfail para que los tests muestren correctamente los pass y fail.
 @pytest.mark.xfail(reason="No romper el pipeline para demostrar funcionamiento.")
 @pytest.mark.parametrize(
     "expectation_name, condition_str, message",
