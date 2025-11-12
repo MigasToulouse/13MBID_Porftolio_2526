@@ -26,10 +26,27 @@ stages:
       size: 5834924
     - path: test\test_dataquality.py
       hash: md5
-      md5: 75f504d96d3c3a09d4c00eaf7c3cb94d
-      size: 2277
+      md5: 902dd1dc3aca19b838476b517f908db2
+      size: 3340
     outs:
     - path: docs\test_results\test_results.html
       hash: md5
-      md5: 769f16bec1633bb001f9ff16d616de34
-      size: 33670
+      md5: 97c0d05a12be2785e48098a657e64dd3
+      size: 38018
+  test_data_gx:
+    cmd: pytest --html=docs\test_results\test_gx_results.html --self-contained-html
+      test\test_data_gx.py
+    deps:
+    - path: data\raw\bank-additional-full.csv
+      hash: md5
+      md5: f6cb2c1256ffe2836b36df321f46e92c
+      size: 5834924
+    - path: test\test_data_gx.py
+      hash: md5
+      md5: 670f588b112396673ec6df4e048896a2
+      size: 4369
+    outs:
+    - path: docs\test_results\test_gx_results.html
+      hash: md5
+      md5: f81ddec32a26e4407c6e0c761ad3805f
+      size: 33105
