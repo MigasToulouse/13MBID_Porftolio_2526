@@ -78,7 +78,7 @@ def preprocess_data(input_path : str = INPUT_CSV, output_path: str = OUTPUT_CSV,
     add_to_doc("Se binarizaron las columnas categóricas de dos clases ('housing', 'loan', 'y') a valores numéricos (1 para 'yes' y 0 para 'no').")
 
     # Guardar el DataFrame procesado
-    df.to_csv(output_path, index=False)
+    df.to_csv(output_path, index=False, sep=';')
 
     return df.shape
 

@@ -59,12 +59,12 @@ stages:
       size: 5834924
     - path: src\data_preprocessing.py
       hash: md5
-      md5: f82129155b72b44093da70f795dc295c
-      size: 3489
+      md5: 86b23fb98a75fc084a87d3811860e70e
+      size: 3464
     outs:
     - path: data\processed\bank-additional-full_preprocessed.csv
       hash: md5
-      md5: 7fc82fcf1af5d2ca753447c129ad95f8
+      md5: 014181eb718b0a4500ecccde35a13296
       size: 4227097
     - path: docs\transformaciones_dataset.md
       hash: md5
