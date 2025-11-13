@@ -80,17 +80,17 @@ stages:
       size: 4303578
     - path: src\train_model.py
       hash: md5
-      md5: e2a93a3ddb4f7457260a2e7636e8bbd2
-      size: 10776
+      md5: c68cf2ca5a91cdec887ee7b09a287ae9
+      size: 10792
     outs:
     - path: metrics\model_metrics.json
       hash: md5
-      md5: 2d78b1db8528559562a727c955696292
-      size: 162
-    - path: models\knn_model.pkl
+      md5: 76b968e9d0d4aa0a20902a2f196ce48e
+      size: 161
+    - path: models\decision_tree_model.pkl
       hash: md5
-      md5: 98060aa3251b32a64ca2592c4928155d
-      size: 2090884
+      md5: 0cb80b5ce24f6eeb5b169ae79f735c9e
+      size: 216377
     - path: models\preprocessor.pkl
       hash: md5
       md5: 6e43f0ce0a6b8d49adb3b0ea341184f7

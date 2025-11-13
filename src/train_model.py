@@ -23,10 +23,10 @@ from mlflow.models import infer_signature
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, RobustScaler
 from sklearn.compose import ColumnTransformer
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.utils import resample
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import ConfusionMatrixDisplay
 
@@ -34,8 +34,8 @@ from sklearn.metrics import ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 
 # PARAMETERS
-MODEL_NAME = "KNN_Classifier"
-MODEL_OUTPUT_PATH = join(getcwd(), "models", "knn_model.pkl")
+MODEL_NAME = "Decision Tree Classifier"
+MODEL_OUTPUT_PATH = join(getcwd(), "models", "decision_tree_model.pkl")
 PREPROCESSOR_OUTPUT_PATH = join(getcwd(), "models", "preprocessor.pkl")
 METRICS_OUTPUT_PATH = join(getcwd(), "metrics", "model_metrics.json")
 DATA_PATH = join(getcwd(), "data", "processed", "bank-additional-full_preprocessed.csv")
@@ -171,7 +171,7 @@ def train_model(
         print(f"Distribución: {y_train_balanced.value_counts().to_dict()}")
 
         print("Entrenando el modelo...")
-        model = KNeighborsClassifier(n_neighbors=7)
+        model = DecisionTreeClassifier()
         model.fit(X_train_balanced, y_train_balanced)
 
         print("Evaluando el modelo...")
@@ -254,7 +254,7 @@ def train_model(
         # Registrar el modelo
         mlflow.sklearn.log_model(
             sk_model=model,
-            artifact_path="knn_model",
+            artifact_path="Decision_Tree_Model",
             signature=model_signature,
             # input_example=preprocessed_input_example
         )

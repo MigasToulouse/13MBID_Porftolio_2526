@@ -39,6 +39,6 @@ stages:
         - src\train_model.py
         - data\processed\bank-additional-full_preprocessed.csv
     outs:
-      - models\knn_model.pkl
+      - models\decision_tree_model.pkl
       - models\preprocessor.pkl
       - metrics\model_metrics.json
