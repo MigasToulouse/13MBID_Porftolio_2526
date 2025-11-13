@@ -68,6 +68,10 @@ def preprocess_data(input_path : str = INPUT_CSV, output_path: str = OUTPUT_CSV,
     df['contacts_diff'] = df['campaign'] - df['previous']
     add_to_doc("Se creó una nueva columna 'contacts_diff' que representa la diferencia entre contactos en la campaña actual y la anterior.")
 
+    # Se añade contact_before, un atributo que aparecerá en los nuevos datos en la fase modelado
+    df['contacted_before'] = np.where(df['previous'] > 0, 1, 0)
+    add_to_doc("Se creó una nueva columna 'contact_before' que indica si el cliente fue contactado en campañas anteriores.")
+
     # FORMATEO
     df['nr_employed'] = pd.to_numeric(df['nr_employed'], downcast='integer')
     add_to_doc("Se transformó la columna 'nr_employed' de float a entero por coherencia semántica.")

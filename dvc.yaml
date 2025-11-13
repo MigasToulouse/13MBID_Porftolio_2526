@@ -9,12 +9,12 @@ stages:
       - docs\reports\EDA_reporte.html
   # 2do stage: test de calidad de datos
   test_data_quality:
-    cmd: pytest --html=docs\test_results\test_results.html --self-contained-html test\test_dataquality.py
+    cmd: pytest --html=docs\test_results\test_dataquality_results.html --self-contained-html test\test_dataquality.py
     deps:
       - test\test_dataquality.py
       - data\raw\bank-additional-full.csv
     outs:
-      - docs\test_results\test_results.html
+      - docs\test_results\test_dataquality_results.html
   # 3er stage: test con great_expectations
   test_data_gx:
     cmd: pytest --html=docs\test_results\test_gx_results.html --self-contained-html test\test_data_gx.py
@@ -32,3 +32,13 @@ stages:
     outs:
       - data\processed\bank-additional-full_preprocessed.csv
       - docs\transformaciones_dataset.md
+  # 5to stage: entrenamiento del modelo
+  train_model:
+    cmd: python src\train_model.py
+    deps:
+        - src\train_model.py
+        - data\processed\bank-additional-full_preprocessed.csv
+    outs:
+      - models\knn_model.pkl
+      - models\preprocessor.pkl
+      - metrics\model_metrics.json
