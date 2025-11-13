@@ -18,7 +18,8 @@ stages:
       md5: f65af2aa734f04ab00565b319205566a
       size: 7128676
   test_data_quality:
-    cmd: pytest --html=docs\test_results\test_results.html --self-contained-html test\test_dataquality.py
+    cmd: pytest --html=docs\test_results\test_dataquality_results.html --self-contained-html
+      test\test_dataquality.py
     deps:
     - path: data\raw\bank-additional-full.csv
       hash: md5
@@ -29,10 +30,10 @@ stages:
       md5: ebe5a6190ff9eadc4a7c6dd311ceeb03
       size: 3177
     outs:
-    - path: docs\test_results\test_results.html
+    - path: docs\test_results\test_dataquality_results.html
       hash: md5
-      md5: 983242499ffcb3021a84ab7fad872c45
-      size: 37936
+      md5: 99fce037263f762c3b5ff4f1af3f2580
+      size: 37972
   test_data_gx:
     cmd: pytest --html=docs\test_results\test_gx_results.html --self-contained-html
       test\test_data_gx.py
@@ -59,14 +60,38 @@ stages:
       size: 5834924
     - path: src\data_preprocessing.py
       hash: md5
-      md5: 86b23fb98a75fc084a87d3811860e70e
-      size: 3464
+      md5: 8fa319614711aecd7ecf3da018afbec3
+      size: 3755
     outs:
     - path: data\processed\bank-additional-full_preprocessed.csv
       hash: md5
-      md5: 014181eb718b0a4500ecccde35a13296
-      size: 4227097
+      md5: 41d3b10d44545d7d9eb8da5aeccfc136
+      size: 4303578
     - path: docs\transformaciones_dataset.md
       hash: md5
-      md5: e0fb210f31e6390015fee027b04f6dd6
-      size: 867
+      md5: 5ca96a3b400a12733bede07dfa52850e
+      size: 981
+  train_model:
+    cmd: python src\train_model.py
+    deps:
+    - path: data\processed\bank-additional-full_preprocessed.csv
+      hash: md5
+      md5: 41d3b10d44545d7d9eb8da5aeccfc136
+      size: 4303578
+    - path: src\train_model.py
+      hash: md5
+      md5: e2a93a3ddb4f7457260a2e7636e8bbd2
+      size: 10776
+    outs:
+    - path: metrics\model_metrics.json
+      hash: md5
+      md5: 2d78b1db8528559562a727c955696292
+      size: 162
+    - path: models\knn_model.pkl
+      hash: md5
+      md5: 98060aa3251b32a64ca2592c4928155d
+      size: 2090884
+    - path: models\preprocessor.pkl
+      hash: md5
+      md5: 6e43f0ce0a6b8d49adb3b0ea341184f7
+      size: 7106
