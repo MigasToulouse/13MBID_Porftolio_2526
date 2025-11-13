@@ -42,3 +42,12 @@ stages:
       - models\decision_tree_model.pkl
       - models\preprocessor.pkl
       - metrics\model_metrics.json
+  # 6to stage: evaluación del modelo
+  test_model:
+    cmd: pytest --html=docs\test_results\test_model_results.html --self-contained-html test\test_training.py
+    deps:
+      - test\test_training.py
+      - models\decision_tree_model.pkl
+      - data\processed\bank-additional-full_preprocessed.csv
+    outs:
+      - docs\test_results\test_model_results.html

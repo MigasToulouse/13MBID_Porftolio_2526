@@ -171,7 +171,7 @@ def train_model(
         print(f"Distribución: {y_train_balanced.value_counts().to_dict()}")
 
         print("Entrenando el modelo...")
-        model = DecisionTreeClassifier()
+        model = DecisionTreeClassifier(random_state=42)
         model.fit(X_train_balanced, y_train_balanced)
 
         print("Evaluando el modelo...")
@@ -264,7 +264,6 @@ def train_model(
         Path(model_output_path).parent.mkdir(parents=True, exist_ok=True)
         Path(preprocessor_output_path).parent.mkdir(parents=True, exist_ok=True)
         Path(metrics_output_path).parent.mkdir(parents=True, exist_ok=True)
-
         joblib.dump(model, model_output_path)
         print("Modelo guardado en:", model_output_path)
         joblib.dump(preprocessor_full, preprocessor_output_path)

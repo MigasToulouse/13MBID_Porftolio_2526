@@ -80,18 +80,39 @@ stages:
       size: 4303578
     - path: src\train_model.py
       hash: md5
-      md5: c68cf2ca5a91cdec887ee7b09a287ae9
-      size: 10792
+      md5: 854bd224b03008493a9ff309626f4e89
+      size: 10806
     outs:
     - path: metrics\model_metrics.json
       hash: md5
-      md5: 76b968e9d0d4aa0a20902a2f196ce48e
-      size: 161
+      md5: 04e19696a40c067ecc58c59fb75e066e
+      size: 163
     - path: models\decision_tree_model.pkl
       hash: md5
-      md5: 0cb80b5ce24f6eeb5b169ae79f735c9e
-      size: 216377
+      md5: 71a97402658fcbde220af4d58b82bcee
+      size: 217657
     - path: models\preprocessor.pkl
       hash: md5
       md5: 6e43f0ce0a6b8d49adb3b0ea341184f7
       size: 7106
+  test_model:
+    cmd: pytest --html=docs\test_results\test_model_results.html --self-contained-html
+      test\test_training.py
+    deps:
+    - path: data\processed\bank-additional-full_preprocessed.csv
+      hash: md5
+      md5: 41d3b10d44545d7d9eb8da5aeccfc136
+      size: 4303578
+    - path: models\decision_tree_model.pkl
+      hash: md5
+      md5: 71a97402658fcbde220af4d58b82bcee
+      size: 217657
+    - path: test\test_training.py
+      hash: md5
+      md5: e4c61e712212d8b83ae4ee6a34a6b6b2
+      size: 1600
+    outs:
+    - path: docs\test_results\test_model_results.html
+      hash: md5
+      md5: 62c07644681f017b053372ae3a5b8c08
+      size: 34167

@@ -24,7 +24,7 @@ def test_training_metrics_regression(tmp_path):
 
     # Ejecutar entrenamiento
     data_path = project_root / "data" / "processed" / "bank-additional-full_preprocessed.csv"
-    model_output_path = tmp_path / "knn_model.pkl"
+    model_output_path = tmp_path / "decision_tree_model.pkl"
     preprocessor_output_path = tmp_path / "preprocessor.pkl"
     metrics_output_path = tmp_path / "model_metrics.json"
 
